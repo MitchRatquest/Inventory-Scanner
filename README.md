@@ -3,9 +3,9 @@
 Wireless barcode scanner used for manifesting pallets of wholesale lamps, but can be extended to just about anything. 
 
 It runs on a small single board computer with integrated wifi (Orange Pi Lite), a portable USB battery bank, and a USB barcode scanner.
-Initiall I tried to use USB over IP, but the results were lackluster.
+Initially I tried to use USB over IP, but the results were lackluster.
 
-There are scripts for generating manifests in CSV format, with our without hyperlinks, and they rely on lookups. I created a few scripts to generate the lookup tables, but they mostly used the Mechanize package from python. 
+There are scripts for generating manifests in CSV format, with our without hyperlinks, and they rely on lookups. I created a few scripts to generate the lookup tables, but they mostly used the Mechanize package and were trivial. 
 
 The barcode generation scripts are for either pallet identification or for when a barcode on an item wont scan. 
 
