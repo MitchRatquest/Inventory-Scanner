@@ -12,3 +12,6 @@ The barcode generation scripts are for either pallet identification or for when 
 The user has to log in to the board by scanning the username and password barcode, and finally the rawinput_on_pi.py script. From then on they are in the main loop, which appends each scanned input to a file. There is a delete function, but it merely saves the text "deleteprevious", which is parsed by the manifest builder. It was important to make the actual scanning as simple as possible. Finally, scanning "imfinished" uploads the newly scanned inventory to an FTP server on our local network. 
 
 I've given each board a static IP and can `watch "tail -n 50 10.14.30_AM.txt && wc 10.14.30_AM.txt"` via ssh to make sure nothing weird is happenning. 
+
+The entire setup looks like this (static IP written on tape):
+![alt text](https://github.com/MitchRatquest/Inventory-Scanner/blob/master/Hardware/together.JPG "Hardware Setup")
