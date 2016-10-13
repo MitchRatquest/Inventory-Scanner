@@ -44,4 +44,6 @@ echo "navigate to /etc/network and edit interfaces with your SSID and pass"
 
 wget -O rawinput.py https://raw.githubusercontent.com/MitchRatquest/Inventory-Scanner/master/OPI/rawinput_on_pi.py
 chmod 777 rawinput.py
-mv rawinput.py
+userdir=$(ls /home)
+chmod 777 /home/$userdir
+mv rawinput.py /home/$userdir
