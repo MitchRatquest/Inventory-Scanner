@@ -16,5 +16,5 @@ I've given each board a static IP and can `watch "tail -n 50 10.14.30_AM.txt && 
 The entire setup looks like this (static IP written on tape):
 ![alt text](https://github.com/MitchRatquest/Inventory-Scanner/blob/master/Hardware/together.JPG "Hardware Setup")
 
-![alt text](https://github.com/BiTinerary/Inventory-Scanner/tree/master/Hardware/windowsGUI.JPG "Or use with Windows OS")
+![alt text](https://github.com/BiTinerary/Inventory-Scanner/blob/master/Hardware/windowsGUI.jpg "Or use with Windows OS")
 
