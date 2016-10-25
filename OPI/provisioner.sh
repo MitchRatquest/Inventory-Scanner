@@ -46,6 +46,43 @@ cd /home/$usedir
 #cat .profile |  sed 's/\. "$HOME\/\.bashrc"/\. "$HOME\/\.bashrc"\n\t\tpython rawinput.py/g' > .profile
 echo "python /home/$userdir/rawinput.py" >> .profile
 
+#now need to add user feedback for when its ready to scan 
+#going to add screen/speaker later when hardware arrives
+cd /root
+cat > blinky.sh << EOL
+#!/bin/bash
+pythoncheck="pgrep python"
+while true; do
+#echo "$(eval "$pythoncheck" )"
+if [ "$(eval "$pythoncheck" )" -ge 1 ]
+then
+        echo 1 > /sys/class/leds/red_led/brightness;
+        sleep .5;
+        echo 0 > /sys/class/leds/red_led/brightness;
+        sleep .5;
+else
+        echo 1 > /sys/class/leds/red_led/brightness;
+fi
+done
+EOL
+chmod 777 blinky.sh
+
+cd /etc/systemd/system
+cat > redled.service << EOL
+[Unit]
+Description=Red Led Blink When Ready
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /root/blinkem.sh
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+systemctl enable redled.service
+
+
 apt-get update && apt-get install -y python sshpass 
 
 echo "navigate to /etc/network and edit interfaces with your SSID and pass"
