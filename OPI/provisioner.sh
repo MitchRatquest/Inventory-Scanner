@@ -29,6 +29,23 @@ chmod 777 powersave.service
 systemctl enable powersave.service
 systemctl start powersave.service
 
+#create autologin script
+cd /etc/systemd/system/getty@tty1.service.d
+cat > autologin.conf << EOL
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin raul --noclear %I 38400 linux
+EOL
+
+systemctl daemon-reload
+
+#script start on login
+userdir=$(ls /home)
+cd /home/$usedir
+#cp .profile .profile-orig
+#cat .profile |  sed 's/\. "$HOME\/\.bashrc"/\. "$HOME\/\.bashrc"\n\t\tpython rawinput.py/g' > .profile
+echo "python /home/$userdir/rawinput.py" >> .profile
+
 apt-get update && apt-get install -y python sshpass 
 
 echo "navigate to /etc/network and edit interfaces with your SSID and pass"
