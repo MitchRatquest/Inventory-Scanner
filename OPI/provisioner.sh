@@ -30,17 +30,17 @@ systemctl enable powersave.service
 systemctl start powersave.service
 
 #create autologin script
+userdir=$(ls /home)
 cd /etc/systemd/system/getty@tty1.service.d
 cat > autologin.conf << EOL
 [Service]
 ExecStart=
-ExecStart=-/sbin/agetty --autologin raul --noclear %I 38400 linux
+ExecStart=-/sbin/agetty --autologin $userdir --noclear %I 38400 linux
 EOL
 
 systemctl daemon-reload
 
 #script start on login
-userdir=$(ls /home)
 cd /home/$usedir
 #cp .profile .profile-orig
 #cat .profile |  sed 's/\. "$HOME\/\.bashrc"/\. "$HOME\/\.bashrc"\n\t\tpython rawinput.py/g' > .profile
@@ -98,6 +98,5 @@ echo "navigate to /etc/network and edit interfaces with your SSID and pass"
 
 wget -O rawinput.py https://raw.githubusercontent.com/MitchRatquest/Inventory-Scanner/master/OPI/rawinput_on_pi.py
 chmod 777 rawinput.py
-userdir=$(ls /home)
 chmod 777 /home/$userdir
 mv rawinput.py /home/$userdir
