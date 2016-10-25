@@ -74,7 +74,7 @@ Description=Red Led Blink When Ready
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash /root/blinkem.sh
+ExecStart=/bin/bash /root/blinky.sh
 
 [Install]
 WantedBy=multi-user.target
