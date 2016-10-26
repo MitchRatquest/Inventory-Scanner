@@ -41,7 +41,7 @@ EOL
 systemctl daemon-reload
 
 #script start on login
-cd /home/$usedir
+cd /home/$userdir
 #cp .profile .profile-orig
 #cat .profile |  sed 's/\. "$HOME\/\.bashrc"/\. "$HOME\/\.bashrc"\n\t\tpython rawinput.py/g' > .profile
 echo "python /home/$userdir/rawinput.py" >> .profile
@@ -54,7 +54,7 @@ cat > blinky.sh << EOL
 pythoncheck="pgrep python"
 while true; do
 #echo "$(eval "$pythoncheck" )"
-if [ "$(eval "$pythoncheck" )" -ge 1 ]
+if [ "$(eval '$pythoncheck' )" -ge 1 ]
 then
         echo 1 > /sys/class/leds/red_led/brightness;
         sleep .5;
