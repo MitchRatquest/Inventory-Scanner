@@ -4,7 +4,10 @@ timestamp =  str(datetime.datetime.now().strftime('%I.%M.%S_%p')) + '.txt' #only
 daystamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d') #name of folder to put files for today in
 
 #CHANGE THIS
-ftpPass = "YOURPASSWORDHERE"
+with open('Credz.txt') as f:
+	ftpPass = f.readline() # Line 1 of "Credz" file corresponds to main server pass
+	ftpUserIPDirectory = f.readline() # Line 2 of credential file is the username and directory of where the rsynced file is sent
+	f.close()
 
 cwd = os.getcwd() #current working directory
 opj = os.path.join #more magic - OS PATH JOIN = opj, for windows and linux compatibility
@@ -26,7 +29,7 @@ while True:
 		del(yam[-1]) #dont print the imfinished bit
 		currentfile = daystamp +'/'+timestamp #just put it in today's folder
 		#change line below to fit your setup
-		command = 'sshpass -p %s rsync -a %s USER@IPADDRESS:/home/USER/INVENTORY' %ftpPass,currentfile
+		command = 'sshpass -p %s rsync -a %s %s' % ftpPass, currentfile, ftpUserIPDirectory
 		#I know this is a total hack
 		subprocess.call(command, shell=True)  #run the dumb thing
 		quit()
@@ -34,5 +37,4 @@ while True:
 	createFileInDateDirectory = str(opj(folderWithTodaysDate, timestamp)) #current file in progress, based on timestamp above
 	with open(createFileInDateDirectory, 'a') as final:  #append that file every time you scan in case of system failure somewhere (batteries die)
 		final.write(yam[-1] + '\n') #write the latest input
-		final.close() #close it 
-	
+		final.close() #close it
