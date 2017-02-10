@@ -3,7 +3,7 @@ import os, datetime, time
 
 scannedItemsArray = []
 timestamp =  str(datetime.datetime.now().strftime('%I.%M.%S_%p')) + '.txt' #only once, filename ultimately
-daystamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d') #name of folder to put files for today in
+daystamp = datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%y') #name of folder to put files for today in
 cwd = os.getcwd() #current working directory
 opj = os.path.join #more magic - OS PATH JOIN = opj, for windows and linux compatibility
 folderWithTodaysDate = opj(cwd, daystamp)  # folder to place all todays scans in
