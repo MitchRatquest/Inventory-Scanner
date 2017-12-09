@@ -2,9 +2,10 @@ import subprocess, datetime, time, os
 
 scannedItemsArray = []
 
-opj = os.path.join
 timestamp = '%s.txt' % datetime.datetime.now().strftime('%I.%M.%S%p') #only once, filename ultimately
 daystamp = datetime.datetime.now().strftime('%m-%d-%Y') #name of folder to put files for today in
+
+opj = os.path.join
 folderWithTodaysDate = opj(os.getcwd(), daystamp) # folder to place all todays scans in. OS PATH JOIN = for windows and linux compatibility
 
 def blinky(color):
