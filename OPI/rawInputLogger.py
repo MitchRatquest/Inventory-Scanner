@@ -2,10 +2,9 @@ import subprocess, datetime, time, os
 
 scannedItemsArray = []
 
-timestamp = '%s.txt' % datetime.datetime.now().strftime('%I.%M.%S%p') #only once, filename ultimately
-daystamp = datetime.datetime.now().strftime('%m-%d-%Y') #name of folder to put files for today in
-
 opj = os.path.join
+timestamp = datetime.datetime.now().strftime('%I.%M.%S%p') #only once, filename ultimately
+daystamp = datetime.datetime.now().strftime('%m-%d-%Y') #name of folder to put files for today in
 folderWithTodaysDate = opj(os.getcwd(), daystamp) # folder to place all todays scans in. OS PATH JOIN = for windows and linux compatibility
 
 def blinky(color):
@@ -32,9 +31,7 @@ def makeFolder():
 		#os.chmod(folderWithTodaysDate, 0777)
 
 def writeFile(rawInput):
-	createFileInDateDirectory = str(opj(folderWithTodaysDate, timestamp)) #current file in progress, based on timestamp above
-
-	with open(createFileInDateDirectory, 'a') as final:  #append that file every time you scan in case of system failure somewhere (batteries die)
+	with open('%s.txt' % opj(folderWithTodaysDate, timestamp), 'a') as final:  #append that file every time you scan in case of system failure somewhere (batteries die)
 		final.write(rawInput + '\n') #write the latest input
 		final.close() #close it
 
