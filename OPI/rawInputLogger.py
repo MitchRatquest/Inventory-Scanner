@@ -1,5 +1,4 @@
-import Tkinter as tk
-import os, datetime, time, subprocess
+import subprocess, datetime, time, os
 
 scannedItemsArray = []
 
